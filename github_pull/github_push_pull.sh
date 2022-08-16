@@ -40,4 +40,7 @@ then
         login()
     fi
 else
+    git add * && \
+    git commit -m "$2" && \
+    login()
 fi
