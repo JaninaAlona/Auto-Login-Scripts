@@ -1,0 +1,17 @@
+#! /usr/bin/expect 
+
+set timeout -1
+set user_name [lindex $argv 0]
+set token_password [lindex $argv 1]
+
+spawn git pull
+
+expect "Username*"
+
+send -- "$user_name\r"
+
+expect "Password*" 
+
+send -- "$token_password\r"
+
+interact
