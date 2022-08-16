@@ -1,10 +1,11 @@
 #! /usr/bin/expect 
 
 set timeout -1
-set user_name [lindex $argv 0]
-set token_password [lindex $argv 1]
+set action [lindex $argv 0]
+set user_name [lindex $argv 1]
+set token_password [lindex $argv 2]
 
-spawn git pull
+spawn git $action
 
 expect "Username*"
 
