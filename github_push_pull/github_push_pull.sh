@@ -12,7 +12,7 @@ function login() {
                 if [ -z "$GITHUB_USER" ] && [ -z "$GITHUB_TOKEN" ];then
                     echo "environment variables unset in .env file"
                 else
-                    ./pullserverbot.exp $ACTION $GITHUB_USER $GITHUB_TOKEN
+                    ./ghloginbot.exp $ACTION $GITHUB_USER $GITHUB_TOKEN
                 fi
             else
                 echo "environment variables missing in .env file"
