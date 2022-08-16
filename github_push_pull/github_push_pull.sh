@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-ACTION="pull"
+action="pull"
 export PW=${PW:-n}
 
 function login() {
@@ -12,7 +12,7 @@ function login() {
                 if [ -z "$GITHUB_USER" ] && [ -z "$GITHUB_TOKEN" ];then
                     echo "environment variables unset in .env file"
                 else
-                    ./ghloginbot.exp $ACTION $GITHUB_USER $GITHUB_TOKEN
+                    ./ghloginbot.exp $action $GITHUB_USER $GITHUB_TOKEN
                 fi
             else
                 echo "environment variables missing in .env file"
@@ -21,9 +21,9 @@ function login() {
             echo ".env file missing"
         fi
     elif [ "$PW" == "n" ] || [ "$PW" == "N" ];then
-        if [ "$ACTION" == "push" ];then
+        if [ "$action" == "push" ];then
             git push
-        elif [ "$ACTION" == "pull" ];then
+        elif [ "$action" == "pull" ];then
             git pull
         fi
     fi
@@ -32,13 +32,13 @@ function login() {
 if [ $# -gt 0 ]
 then
     if [ "$1" == "pull" ];then
-        login()
+        login
     elif [ "$1" == "push" ];then 
-        ACTION="push"
+        action="push"
         git add * && \
         git commit -m "$2" && \
-        login()
+        login
     fi
 else
-    login()
+    login
 fi
