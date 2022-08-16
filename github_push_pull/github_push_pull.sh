@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-ACTION="push"
+ACTION="pull"
 export PW=${PW:-n}
 
 function login() {
@@ -32,15 +32,13 @@ function login() {
 if [ $# -gt 0 ]
 then
     if [ "$1" == "pull" ];then
-        ACTION="pull"
         login()
     elif [ "$1" == "push" ];then 
+        ACTION="push"
         git add * && \
         git commit -m "$2" && \
         login()
     fi
 else
-    git add * && \
-    git commit -m "$2" && \
     login()
 fi
