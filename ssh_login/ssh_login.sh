@@ -8,6 +8,7 @@ if [ -f .env ]; then
         if [ -z "$SERVER_USER" ] && [ -z "$SERVER_IP" ] && [ -z "$SERVER_PASSPHRASE" ];then
             echo "environment variables unset in .env file"
         else
+            #source $(dirname "$0")/sshserverbot.exp
             ./sshserverbot.exp $SERVER_USER $SERVER_IP $SERVER_PASSPHRASE
         fi
     else
